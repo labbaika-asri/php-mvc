@@ -41,7 +41,6 @@
                 $url = rtrim($_GET["url"], '/'); // Menghapus slash diakhir url
                 $url = filter_var($url, FILTER_SANITIZE_URL); // Membersihkan url dari karakter aneh
                 $url = explode('/', $url); // Pecah url menjadi array
-                var_dump($url);
                 return $url;
             }
         }
