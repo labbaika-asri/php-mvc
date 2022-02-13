@@ -4,8 +4,12 @@
     {
         public function index()
         {
-            $this->view('templates/header', ["judul" => "Halaman Home"]);
-            $this->view('home/index');
+            $data = [
+                "judul" => "Halaman Home",
+                "nama" => $this->model('User_model')->getUser()
+            ];
+            $this->view('templates/header', $data);
+            $this->view('home/index', $data);
             $this->view('templates/footer');
         }
     }
