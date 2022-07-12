@@ -57,4 +57,15 @@
             }
             header('Location: ' . BASEURL . '/mahasiswa');
         }
+
+        public function cari()
+        {
+            $data = [
+                "judul" => "Data Mahasiswa",
+                "mhs" => $this->model("mahasiswa_model")->cariDataMahasiswa()
+            ];
+            $this->view("templates/header", $data);
+            $this->view("mahasiswa/index", $data);
+            $this->view("templates/footer");
+        }
     }

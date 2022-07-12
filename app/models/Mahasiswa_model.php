@@ -25,7 +25,7 @@ class Mahasiswa_model
 
     public function tambahDataMahasiswa($data)
     {
-        $query = "INSERT INTO mahasiswa VALUES('', :nama, :nrp, :email, :jurusan)";
+        $query = "INSERT INTO " . $this->table . " VALUES('', :nama, :nrp, :email, :jurusan)";
         $this->db->query($query);
         $this->db->bind('nama', $data["nama"]);
         $this->db->bind('nrp', $data["nrp"]);
@@ -38,7 +38,7 @@ class Mahasiswa_model
 
     public function hapusDataMahasiswa($id)
     {
-        $query = "DELETE FROM mahasiswa WHERE id = :id";
+        $query = "DELETE FROM " . $this->table . " WHERE id = :id";
         $this->db->query($query);
         $this->db->bind('id', $id);
         $this->db->execute();
@@ -48,7 +48,7 @@ class Mahasiswa_model
 
     public function ubahDataMahasiswa($data)
     {
-        $query = "UPDATE mahasiswa SET nama = :nama, nrp = :nrp, email = :email, jurusan = :jurusan WHERE id = :id";
+        $query = "UPDATE " . $this->table . " SET nama = :nama, nrp = :nrp, email = :email, jurusan = :jurusan WHERE id = :id";
         $this->db->query($query);
         $this->db->bind('nama', $data["nama"]);
         $this->db->bind('nrp', $data["nrp"]);
@@ -57,5 +57,16 @@ class Mahasiswa_model
         $this->db->bind('id', $data["id"]);
         $this->db->execute();
         return $this->db->rowCount();
+    }
+
+    public function cariDataMahasiswa()
+    {
+        $keyword = $_POST["keyword"];
+
+        $query = "SELECT * FROM " . $this->table . " WHERE nama LIKE :keyword";
+
+        $this->db->query($query);
+        $this->db->bind('keyword', "%$keyword%");
+        return $this->db->resultSet();
     }
 }
