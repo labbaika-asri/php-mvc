@@ -7,7 +7,8 @@
     <div class="row">
         <div class="col-6">
             <div class="d-flex justify-content-end">
-                <a href="" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#formModal">Tambah
+                <a href="" class="btn btn-success mb-2 tampilModalTambah" data-bs-toggle="modal"
+                    data-bs-target="#formModal">Tambah
                     data Mahasiswa</a>
             </div>
             <h3 class="mb-3">Daftar Mahasiswa</h3>
@@ -17,6 +18,10 @@
                     <?= $mhs["nama"]; ?>
                     <a href="<?= BASEURL; ?>/mahasiswa/hapus/<?= $mhs["id"]; ?>"
                         class="badge bg-danger float-end ms-2" onclick="return confirm('Yakin?');">Hapus</a>
+                    <a href="<?= BASEURL; ?>/mahasiswa/ubah/<?= $mhs["id"]; ?>"
+                        class="badge bg-success float-end ms-2 tampilModalUbah" data-bs-toggle="modal"
+                        data-bs-target="#formModal"
+                        data-id="<?= $mhs["id"]; ?>">Ubah</a>
                     <a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs["id"]; ?>"
                         class="badge bg-primary float-end ms-2">Detail</a>
                 </li>
@@ -36,6 +41,7 @@
             </div>
             <form action="<?= BASEURL; ?>/mahasiswa/tambah"
                 method="POST">
+                <input type="hidden" name="id" id="id">
                 <div class="modal-body">
                     <label for="nama" class="form-label">Nama</label>
                     <div class="input-group mb-3">
